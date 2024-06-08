@@ -61,3 +61,25 @@ body {
 }
 
 
+@media (max-width: 510px) {
+
+  .header-div{
+    gap:1.4rem;
+  }
+
+  .header-div> .navs{
+    gap:1rem;
+  }
+
+  .header-div> h1{
+    font-size: 1.3rem;
+  }
+
+  .navs>nav>a{
+    font-size:0.8rem;
+  }
+
+
+
+
+}

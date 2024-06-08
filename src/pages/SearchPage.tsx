@@ -4,8 +4,10 @@ import SearchResults from '../components/SearchResults';
 import "./styles/SearchPage.css";
 
 import {toast} from "react-hot-toast";
+import {useNavigate} from "react-router-dom";
 
 const SearchPage: React.FC = () => {
+  const navigate = useNavigate();
   const [query, setQuery] = useState('');
   const [results, setResults] = useState<any[]>([]);
 
@@ -33,12 +35,16 @@ const SearchPage: React.FC = () => {
     
   };
 
+  const handlClick = () => {
+      navigate("/bookshelf");
+  }
+
   return (
     <div className="search-page">
       <h1>Search Book By Name</h1>
       <div>
         <input type="text" value={query} onChange={handleInputChange} placeholder="Search for a book" />
-        <button onClick={() => window.location.href = '/bookshelf'}>Go to My Bookshelf</button>
+        <button onClick={handlClick}>Go to My Bookshelf</button>
       </div>
       <SearchResults results={results} onAddToBookshelf={addToBookshelf} />
     </div>

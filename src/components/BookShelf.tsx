@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import "./styles/BookShelf.css";
 
 const Bookshelf: React.FC = () => {
   const [books, setBooks] = useState<any[]>([]);
