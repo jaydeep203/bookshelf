@@ -3,6 +3,8 @@ import axios from 'axios';
 import SearchResults from '../components/SearchResults';
 import "./styles/SearchPage.css";
 
+import {toast} from "react-hot-toast";
+
 const SearchPage: React.FC = () => {
   const [query, setQuery] = useState('');
   const [results, setResults] = useState<any[]>([]);
@@ -12,7 +14,11 @@ const SearchPage: React.FC = () => {
     setQuery(value);
     if (value.length > 2) {
       const response = await axios.get(`https://openlibrary.org/search.json?q=${value}&limit=10&page=1`);
+      if(!response){
+         toast.error("Something went wrong!");
+      }
       setResults(response.data.docs);
+
     } else {
       setResults([]);
     }
@@ -23,6 +29,8 @@ const SearchPage: React.FC = () => {
     const books = storedBooks ? JSON.parse(storedBooks) : [];
     books.push(book);
     localStorage.setItem('bookshelf', JSON.stringify(books));
+    toast.success(`${book.title} is added to Shelf.`)
+    
   };
 
   return (
